@@ -9,7 +9,7 @@ function NftCard(props) {
   };
   return (
     <>
-      <div className="m-3 flex flex-col rounded-md border border-pink-600 ">
+      <div className="m-3 flex min-h-max flex-col rounded-md border border-pink-600 ">
         <img
           src={nft.nftImage}
           alt="nft.nftName"
@@ -17,11 +17,11 @@ function NftCard(props) {
           style={{ height: "50%" }}
         />
         <div
-          className="m-3 flex flex-col justify-center border border-gray-600 p-1"
+          className="m-3 flex min-h-max flex-col justify-center border border-gray-600 p-1"
           style={{ height: "50%" }}
         >
-          <div className="line-one flex">
-            <h3 className="nft-name flex-grow text-3xl font-medium text-cyan-100">
+          <div className="line-one mt-2 flex">
+            <h3 className="nft-name  flex-grow text-3xl font-medium text-cyan-100">
               {nft.nftName}
             </h3>
             <svg
@@ -44,7 +44,7 @@ function NftCard(props) {
           <div className="more flex justify-center">
             <div className="overflow-hidden">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-              iste aliquid modi, atque explicabo
+              iste aliquid modi
             </div>
           </div>
           <div className="line-two m-5 flex flex-grow items-end justify-between">

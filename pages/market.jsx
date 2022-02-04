@@ -11,7 +11,7 @@ function Market() {
       </Head>
       <div className="flex min-h-screen flex-row">
         <Nav />
-        <div className="m-2 flex flex-grow p-2">
+        <div className="m-2 flex flex-grow p-2 ">
           <MarketPage />
         </div>
       </div>

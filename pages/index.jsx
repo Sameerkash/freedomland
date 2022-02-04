@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
       <div className="flex min-h-screen flex-row">
         <Nav />
-        <div className="flex flex-grow items-center justify-center">
+        <div className="flex  flex-grow">
           <MainPage />
         </div>
       </div>
