@@ -1,20 +1,22 @@
 import Head from "next/head";
 import Nav from "../components/navigation/Nav";
-import MainPage from "../components/mainPage/MainComponent";
+import VerifyPageComponent from "../components/verifyPage/VerifyPageComponent";
 
-export default function Home() {
+function verify() {
   return (
     <>
       <Head>
-        <title>Freedomland</title>
+        <title>Freedomland - verify</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex min-h-screen flex-row">
         <Nav />
         <div className="flex flex-grow items-center justify-center">
-          <MainPage />
+          <VerifyPageComponent />
         </div>
       </div>
     </>
   );
 }
+
+export default verify;
