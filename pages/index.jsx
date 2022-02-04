@@ -1,11 +1,13 @@
 import Head from "next/head";
 import Nav from "../components/navigation/Nav";
 import MainPage from "../components/mainPage/MainComponent";
+import Landing from "./landing";
 
 export default function Home() {
   return (
     <>
-      <Head>
+      <Landing />
+      {/* <Head>
         <title>Freedomland</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -13,8 +15,9 @@ export default function Home() {
         <Nav />
         <div className="flex flex-grow items-center justify-center">
           <MainPage />
+
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
