@@ -60,11 +60,11 @@ contract LNDToken is ERC20Interface, SafeMath {
  
     constructor() public {
         symbol = "LND";
-        name = "QuikNode Coin";
+        name = "LAND Coin";
         decimals = 2;
         _totalSupply = 100000;
-        balances[YOUR_METAMASK_WALLET_ADDRESS] = _totalSupply;
-        emit Transfer(address(0), YOUR_METAMASK_WALLET_ADDRESS, _totalSupply);
+        balances[NFT_LAND_ADDRESS] = _totalSupply;
+        emit Transfer(address(0), NFT_LAND_ADDRESS, _totalSupply);
     }
  
     function totalSupply() public constant returns (uint) {
