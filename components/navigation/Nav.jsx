@@ -9,7 +9,7 @@ function Nav() {
     },
   };
   return (
-    <div className="flex flex-col bg-[#101727] p-2 pt-6">
+    <div className="flex flex-col bg-[#1a162c] p-2 pt-6">
       <ul className="flex min-h-[40vh] flex-col justify-around ">
         <li>
           <Link href={"/"}>

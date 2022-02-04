@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 body {
-  background: radial-gradient(at 100% 50%, rgb(56, 189, 248), rgb(49, 46, 129));
-  /* background: linear-gradient(to right top, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42)) */
+  background: #121128;
+  color: #e5e5ee;
+  /* background: radial-gradient(at 100% 50%, rgb(56, 189, 248), rgb(49, 46, 129)); */
+  /* background: linear-gradient( to right top, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42)); */
   /* background: rgb(2, 0, 36); */
   /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 48%, rgba(9,9,121,1) 84%);  */
 }
