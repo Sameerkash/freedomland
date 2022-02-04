@@ -7,18 +7,21 @@ function MarketPage() {
     {
       nftName: "nft1",
       nftPrice: "0.01",
+      nftRentPrice: "0.002",
       nftImage:
         "https://cdn.coingape.com/wp-content/uploads/2021/12/13202957/bored-ape-nft-sothebys-record-sale-gID_4-1636814089.jpg",
     },
     {
       nftName: "nft2",
       nftPrice: "0.01",
+      nftRentPrice: "0.002",
       nftImage:
         "https://lh3.googleusercontent.com/GM4a-VCWL8j5H3qE0IohssLWyYRJZKFbT1XkVnrXBhetT08PkaHnQqTZD0Z1mNMfLrZUmjngW9LTTBDXpvpz9k8fPbSLrt5ApkKzyg",
     },
     {
       nftName: "nft3",
       nftPrice: "0.01",
+      nftRentPrice: "0.002",
       nftImage:
         "https://cdn.coingape.com/wp-content/uploads/2021/12/13202957/bored-ape-nft-sothebys-record-sale-gID_4-1636814089.jpg",
     },
