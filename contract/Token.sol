@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.8.0;
  
 //Safe Math Interface
  
@@ -59,7 +59,7 @@ contract LNDToken is ERC20Interface, SafeMath {
     mapping(address => mapping(address => uint)) allowed;
  
     constructor() public {
-        symbol = "LND";
+        symbol = "LNDX";
         name = "LAND Coin";
         decimals = 2;
         _totalSupply = 100000;
