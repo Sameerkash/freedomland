@@ -3,6 +3,10 @@ import Link from "next/link";
 function Nav() {
   const style_class = {
     common_icons: "text-[#dbe7ff] hover:text-red-600",
+    icon_size: {
+      width: 40,
+      height: 40,
+    },
   };
   return (
     <div className="flex flex-col bg-[#101727] p-2 pt-6">
@@ -11,8 +15,8 @@ function Nav() {
           <Link href={"/"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="60"
+              width={style_class.icon_size.width}
+              height={style_class.icon_size.height}
               fill="currentColor"
               className={`${style_class.common_icons} `}
               viewBox="0 0 16 16"
@@ -26,8 +30,8 @@ function Nav() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className={`${style_class.common_icons}`}
-              width="60"
-              height="60"
+              width={style_class.icon_size.width}
+              height={style_class.icon_size.height}
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
@@ -47,8 +51,8 @@ function Nav() {
           <Link href={"/verify"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="60"
+              width={style_class.icon_size.width}
+              height={style_class.icon_size.height}
               fill="currentColor"
               className={`${style_class.common_icons}`}
               viewBox="0 0 16 16"
