@@ -1,9 +1,9 @@
+import SellComponent from "../sell/SellComponent";
+
 function VerifyPageComponent() {
   return (
     <>
-      <div>
-        <h3>verify</h3>
-      </div>
+      <div>Verify Assets</div>
     </>
   );
 }
