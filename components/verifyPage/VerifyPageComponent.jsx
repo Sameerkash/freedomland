@@ -4,7 +4,6 @@ function VerifyPageComponent() {
   return (
     <>
       <div>Verify Assets</div>
-      <SellComponent />
     </>
   );
 }
