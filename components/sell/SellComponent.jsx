@@ -6,18 +6,23 @@ Moralis.start({ serverUrl, appId });
 
 function SellComponent() {
   const promises = [];
-  const uploadIpfs = async (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    const filesArray = Array.from(event.target.parentNode["doc-1"].files);
-    // console.log(event.target.parentNode["doc-1"]);
-    if (filesArray?.length == 0) {
-      console.log("no files in the file input");
-      alert("Please Select Documents");
+
+    const data = new FormData(event.target);
+    const docsArray = Array.from(event.target["doc-1"].files);
+    const picArray = Array.from(event.target["pic-1"].files);
+    console.log("isRented : ", data.get("isRent"));
+    console.log("value : ", data.get("value"));
+    if (docsArray?.length == 0 || picArray?.length == 0) {
+      console.log("a file and a picture are required");
+      alert("a file and a picture are required");
       return;
     }
     const fileDataArray = [];
-    // console.log(filesArray);
-    filesArray.map(async (iFile) => {
+    const uploadData = docsArray.concat(picArray);
+    // console.log(docsArray);
+    uploadData.map(async (iFile) => {
       promises.push(
         new Promise(async (resolve, reject) => {
           let MoralisFile = new Moralis.File(iFile.name, iFile);
@@ -34,7 +39,15 @@ function SellComponent() {
       );
     });
     await Promise.all(promises);
-    console.log(fileDataArray);
+    // console.log(fileDataArray);
+    // console.log("isRented : ", data.get("isRent"));
+    // console.log("value : ", data.get("value"));
+    const formData = {
+      isRent: data.get("isRent"),
+      value: data.get("value"),
+      files: fileDataArray,
+    };
+    console.log(formData);
   };
   return (
     <>
@@ -45,7 +58,7 @@ function SellComponent() {
           </h2>
         </div>
         <div className="form m-4 flex justify-center">
-          <form className="m-20 flex flex-col border p-5">
+          <form className="m-20 flex flex-col border p-5" onSubmit={submitForm}>
             <label htmlFor="doc-1" className="flex p-2">
               Select Documents :
               <input type="file" name="doc-1" id="doc-1" multiple />
@@ -75,9 +88,10 @@ function SellComponent() {
               <input
                 type="number"
                 name="value"
+                defaultValue="0.001"
                 step="0.000001"
                 id="price"
-                placeholder="0.00005"
+                placeholder="0.001"
                 className="rounded-md border border-pink-500 bg-transparent p-1 text-indigo-200"
               />
             </label>
@@ -86,7 +100,6 @@ function SellComponent() {
               type="submit"
               value="Submit"
               className="rounded-xl border-2 border-lime-600 p-4  hover:border-fuchsia-600"
-              onClick={uploadIpfs}
               // onClick={(e)=>{e.target.parentNode.}}
             />
           </form>
