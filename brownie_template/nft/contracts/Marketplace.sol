@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "./NFTs.sol";
 
 contract NFTMarket is ReentrancyGuard {
   using Counters for Counters.Counter;
@@ -21,6 +22,7 @@ contract NFTMarket is ReentrancyGuard {
   }
 
   mapping(uint256 => MarketItem) private idToMarketItem;
+  mapping(address => mapping(address => uint256)) public addressToPercentage;
 
   event MarketItemCreated (
     uint indexed itemId,
@@ -68,7 +70,8 @@ contract NFTMarket is ReentrancyGuard {
 
     function createMarketSale(
     address nftContract,
-    uint256 itemId
+    uint256 itemId,
+    uint256 percentage
     ) public payable nonReentrant {
     uint price = idToMarketItem[itemId].price;
     uint tokenId = idToMarketItem[itemId].tokenId;
@@ -78,6 +81,12 @@ contract NFTMarket is ReentrancyGuard {
     IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
     idToMarketItem[itemId].owner = payable(msg.sender);
     _itemsSold.increment();
+   _setAddressToPercentage(percentage, nftContract);
+
+  }
+
+  function _setAddressToPercentage(uint256 percentage, address nftcontractaddress) internal {
+    addressToPercentage[msg.sender][nftcontractaddress] = percentage;
   }
 
     function fetchMarketItem(uint itemId) public view returns (MarketItem memory) {
@@ -127,17 +136,8 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
-    function createToken(string memory tokenURI, string memory documentURI, bool is_verified) public returns (uint) {
-        require(is_verified, "Document is not verified/Verification is Pending");
-        _tokenIds.increment();
-        uint256 newItemId = _tokenIds.current();
-
-        _mint(address(this), newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        setApprovalForAll(address(this), true);
-        return newItemId;
-    }
-
-
+  // function mintToUser() {
+  //   creatToken()
+  // }
 
 }
