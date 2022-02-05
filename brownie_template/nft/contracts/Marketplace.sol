@@ -70,8 +70,7 @@ contract NFTMarket is ReentrancyGuard {
 
     function createMarketSale(
     address nftContract,
-    uint256 itemId,
-    uint256 percentage
+    uint256 itemId
     ) public payable nonReentrant {
     uint price = idToMarketItem[itemId].price;
     uint tokenId = idToMarketItem[itemId].tokenId;
@@ -81,15 +80,9 @@ contract NFTMarket is ReentrancyGuard {
     IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
     idToMarketItem[itemId].owner = payable(msg.sender);
     _itemsSold.increment();
-   _setAddressToPercentage(percentage, nftContract);
-
   }
 
-  function _setAddressToPercentage(uint256 percentage, address nftcontractaddress) internal {
-    addressToPercentage[msg.sender][nftcontractaddress] = percentage;
-  }
-
-  function fetchMarketItem(uint itemId) public view returns (MarketItem memory) {
+    function fetchMarketItem(uint itemId) public view returns (MarketItem memory) {
     MarketItem memory item = idToMarketItem[itemId];
     return item;
   }
@@ -136,8 +129,17 @@ contract NFTMarket is ReentrancyGuard {
     return items;
   }
 
-  // function mintToUser() {
-  //   creatToken()
-  // }
+    function createToken(string memory tokenURI, string memory documentURI, bool is_verified) public returns (uint) {
+        require(is_verified, "Document is not verified/Verification is Pending");
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+
+        _mint(address(this), newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        setApprovalForAll(address(this), true);
+        return newItemId;
+    }
+
+
 
 }
