@@ -11,7 +11,7 @@ function verify() {
       </Head>
       <div className="flex min-h-screen flex-row">
         <Nav />
-        <div className="flex flex-grow items-center justify-center">
+        <div className="flex flex-grow">
           <VerifyPageComponent />
         </div>
       </div>
