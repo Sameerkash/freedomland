@@ -8,7 +8,10 @@ function MainPage() {
     <>
       <div className="container">
         <div className="welcome-card max-h-5">
-          <img src="https://img.com/test.jpeg" alt="popular nft" />
+          <img
+            src="https://opensea.mypinata.cloud/ipfs/QmdYm9WNbqDoxvmexAicUaorqKX1o3hdBxTiPZa6kYbid5"
+            alt="popular nft"
+          />
         </div>
       </div>
       {/* <button
