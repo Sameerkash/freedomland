@@ -28,7 +28,7 @@ contract kyc {
     // DocumentID[] public document_ids;
     mapping(address => DocumentID) public document_ids;
 
-    function createDoc(string memory docURI, bool is_rent, uint256 price, string memory latLong) public {
+    function createDoc(string memory docURI, bool is_rent, uint256 price, string memory latLong) public returns (DocumentID memory) {
         
         require(price > 0, "Price must be greater than 0");
         address[] memory verify_address = new address[](3);
@@ -43,12 +43,15 @@ contract kyc {
             price: price,
             lat_long: latLong
         });
+        return document_ids[msg.sender];
         
     }
 
     function verify(address seller_address) onlyOwner public {
         require(seller_address != address(0), "Seller address cannot be 0");
+        require(document_ids[seller_address].is_verified == false, "Document is already verified");
         document_ids[seller_address].verifier_address.push(msg.sender);
+        document_ids[seller_address].is_verified = true;
         
     }
 }
