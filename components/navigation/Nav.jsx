@@ -68,10 +68,9 @@ function Nav() {
               onClick={() => {
                 authenticate().then(() => {
                   console.log(user);
-                  updateUser(user);
                 });
               }}
-              className="my-5 rounded-lg bg-indigo-500 p-4  px-16 hover:opacity-70"
+              className="my-5 rounded-lg bg-indigo-500 p-4 px-16 hover:opacity-70"
             >
               <span className="text-center ">Connect Wallet</span>
             </button>
