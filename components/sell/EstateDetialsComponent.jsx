@@ -1,7 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import DropdownComponent from "./DropdownComponent";
+import MoralisContext from "../../context/MoralisContext";
 
 function EstateDetialsComponent() {
+  let Moralis = useContext(MoralisContext);
+
   const hiddenDocumentFile = useRef(null);
   const hiddenImageFile = useRef(null);
 
@@ -11,14 +14,33 @@ function EstateDetialsComponent() {
   const [image, setImage] = useState(false);
   const [price, setPrice] = useState(1);
   const [isSell, setIsSell] = useState(1);
+  const [jsonToIpfs, setJsonToIpfs] = useState({});
+  const [fullData, setFullData] = useState();
 
   function handlSubmit() {
-    console.log("nftName: ", nftName);
-    console.log("description: ", description);
-    console.log("file: ", file);
-    console.log("image: ", image);
-    console.log("price: ", price);
-    console.log("isSell: ", isSell);
+    // console.log("nftName: ", nftName);
+    // console.log("description: ", description);
+    // console.log("file: ", file);
+    // console.log("image: ", image);
+    // console.log("price: ", price);
+    // console.log("isSell: ", isSell);
+
+    setJsonToIpfs({
+      ...jsonToIpfs,
+      nftName: nftName,
+      description: description,
+      price: price,
+    });
+
+    setFullData({
+      nftName: nftName,
+      description: description,
+      image: image,
+      price: price,
+      json: jsonToIpfs,
+    });
+
+    console.log("fullData: ", fullData);
   }
 
   function handleFileButtonClick() {
@@ -29,23 +51,36 @@ function EstateDetialsComponent() {
     hiddenImageFile.current.click();
   }
 
-  function handleFile(e) {
+  const handleFile = async (e) => {
     e.preventDefault();
     if (!e.target.files[0]) return;
 
     const file = e.target.files[0];
     setFile(file);
-    // upload this file to IPFS
-  }
+    let uploadFile = new Moralis.File(file.name, file);
+    console.log("uploading file...");
+    await uploadFile.saveIPFS();
+    setJsonToIpfs({
+      ...jsonToIpfs,
+      file: {
+        hash: uploadFile.hash(),
+        link: uploadFile.ipfs(),
+        fileName: file.name,
+      },
+    });
+  };
 
-  function handleImage(e) {
+  const handleImage = async (e) => {
     e.preventDefault();
     if (!e.target.files[0]) return;
 
     const file = e.target.files[0];
     setImage(file);
-    // upload this file to IPFS
-  }
+    let uploadFile = new Moralis.File(file.name, file);
+    console.log("uploading file...");
+    await uploadFile.saveIPFS();
+    setImage(uploadFile.ipfs());
+  };
 
   return (
     <div className="mt-8 flex flex-col items-start justify-start rounded-lg bg-indigo-800 p-6 pb-10 ">
@@ -137,80 +172,7 @@ function EstateDetialsComponent() {
           Whould you like to list this for Sale or Rent ?
         </span>
         <DropdownComponent sell={isSell} setSell={setIsSell} />
-        {/* <div className="relative">
-          <div className="flex h-10 items-center rounded border border-gray-200 bg-white">
-            <input
-              defaultValue={saleType}
-              name="select"
-              id="select"
-              className="w-full appearance-none px-4 text-gray-800 outline-none"
-              defualtchecked="true"
-            />
-
-            <button className="cursor-pointer text-gray-300 outline-none transition-all hover:text-gray-600 focus:outline-none">
-              <svg
-                className="mx-2 h-4 w-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-            <label
-              htmlFor="show_more"
-              className="cursor-pointer border-l border-gray-200 text-gray-300 outline-none transition-all hover:text-gray-600 focus:outline-none"
-            >
-              <svg
-                className="mx-2 h-4 w-4 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="18 15 12 9 6 15"></polyline>
-              </svg>
-            </label>
-          </div>
-
-          <input
-            type="checkbox"
-            name="show_more"
-            id="show_more"
-            className="peer hidden"
-            defualtchecked="true"
-          />
-          <div className="absolute mt-1 hidden w-full flex-col overflow-hidden rounded border border-gray-200 bg-white shadow peer-checked:flex">
-            <div className="group cursor-pointer">
-              <span
-                className="block border-l-4 border-transparent p-2 text-black group-hover:border-blue-600  group-hover:bg-gray-100"
-                onChange={(e) => {
-                  setSaleType("SELL");
-                }}
-              >
-                SELL
-              </span>
-            </div>
-            <div className="group cursor-pointer border-t">
-              <span
-                className="block border-l-4 border-transparent border-blue-600 p-2 text-black group-hover:border-blue-600 group-hover:bg-gray-100"
-                onChange={(e) => {
-                  setSaleType("RENT");
-                }}
-              >
-                RENT
-              </span>
-            </div>
-          </div>
-        </div> */}
       </div>
-
       <button
         onClick={handlSubmit}
         className="self-center rounded-lg bg-indigo-500 p-4 px-16 hover:opacity-70"
