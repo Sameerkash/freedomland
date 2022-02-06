@@ -89,7 +89,7 @@ contract NFTMarket is ReentrancyGuard {
     addressToPercentage[msg.sender][nftcontractaddress] = percentage;
   }
 
-    function fetchMarketItem(uint itemId) public view returns (MarketItem memory) {
+  function fetchMarketItem(uint itemId) public view returns (MarketItem memory) {
     MarketItem memory item = idToMarketItem[itemId];
     return item;
   }

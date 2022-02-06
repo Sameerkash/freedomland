@@ -27,8 +27,7 @@ contract KYC {
         uint256 price;
         string lat_long;
         uint256 docID;
-        
-        
+             
     }
     
     // DocumentID[] public document_ids;
@@ -40,6 +39,10 @@ contract KYC {
         require(price > 0, "Price must be greater than 0");
          _docIds.increment();
         address[] memory verify_address = new address[](3);
+        for (uint i = 0; i < 3; i++) {
+            verify_address[i] = address(0); 
+        }
+
         DocumentID memory doc_id = DocumentID(msg.sender, docURI, verify_address, is_rent, false, price, latLong, _docIds.current());
         document_ids[msg.sender].push(doc_id);
         return document_ids[msg.sender];
@@ -50,9 +53,11 @@ contract KYC {
         require(seller_address != address(0), "Seller address cannot be 0");
         
         for (uint256 i = 0; i < document_ids[seller_address].length; i++) {
-            // require(document_ids[seller_address][i].verifier_address.length != 3, "Document is already verified");
+            // require(document_ids[seller_address][i].verifier_address.length != 3, "Document is already verified")
+            uint256 len = document_ids[seller_address][i].verifier_address.length;
             if (document_ids[seller_address][i].docID == docID) {
                 document_ids[seller_address][i].verifier_address.push(msg.sender);
+
             }
         }
         return true;

@@ -20,4 +20,13 @@ contract Verifier {
         verifiers.push(msg.sender);
     }
 
+    function isVerifierVerified(address verifier) public view returns (bool) {
+        for (uint256 i = 0; i < verifiers.length; i++) {
+            if (verifiers[i] == verifier) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
