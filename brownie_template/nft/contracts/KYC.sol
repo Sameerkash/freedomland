@@ -38,12 +38,13 @@ contract KYC {
        
         require(price > 0, "Price must be greater than 0");
          _docIds.increment();
-        address[] memory verify_address = new address[](3);
-        for (uint i = 0; i < 3; i++) {
-            verify_address[i] = address(0); 
+        for(uint256 i = 0; i < document_ids[msg.sender].length; i++) {
+            DocumentID memory doc = document_ids[msg.sender][i];
+            if(doc.documentURI == docURI) {
+                revert("Document already exists");
+            }
         }
-
-        DocumentID memory doc_id = DocumentID(msg.sender, docURI, verify_address, is_rent, false, price, latLong, _docIds.current());
+        DocumentID memory doc_id = DocumentID(msg.sender, docURI, new address[](0), is_rent, false, price, latLong, _docIds.current());
         document_ids[msg.sender].push(doc_id);
         return document_ids[msg.sender];
         
