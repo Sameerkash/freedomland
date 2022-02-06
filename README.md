@@ -7,4 +7,4 @@
 
 
 
-*⚒️ Built with 💖 At EthGlobal hackahon, Road to Web3 by Polygon*
+⚒️ Built with 💖 At EthGlobal hackahon, Road to Web3 by Polygon
