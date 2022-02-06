@@ -66,9 +66,7 @@ function Nav() {
           {!isAuthenticated && (
             <button
               onClick={() => {
-                authenticate().then(() => {
-                  console.log(user);
-                });
+                authenticate();
               }}
               className="my-5 rounded-lg bg-indigo-500 p-4 px-16 hover:opacity-70"
             >
