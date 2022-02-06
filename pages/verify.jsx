@@ -9,11 +9,9 @@ function verify() {
         <title>Freedomland - verify</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex min-h-screen flex-row">
+      <div className="flex  flex-row">
         <Nav />
-        <div className="flex flex-grow">
-          <VerifyPageComponent />
-        </div>
+        <VerifyPageComponent />
       </div>
     </>
   );

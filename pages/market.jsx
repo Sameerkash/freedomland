@@ -9,11 +9,9 @@ function Market() {
         <title>Freedomland - market</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex min-h-screen flex-row">
+      <div className="flex flex-row">
         <Nav />
-        <div className="m-2 flex flex-grow p-2 ">
-          <MarketPage />
-        </div>
+        <MarketPage />
       </div>
     </>
   );
