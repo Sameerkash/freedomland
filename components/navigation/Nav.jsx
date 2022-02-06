@@ -1,26 +1,29 @@
 import Link from "next/link";
+import MoralisContext from "../../context/MoralisContext";
+import useUserProfile from "../../hooks/useUserProfile";
+import { useContext } from "react";
 
 function Nav() {
   const style_class = {
     common_icons: "text-[#dbe7ff] hover:text-red-600",
     icon_size: {
-      width: 40,
-      height: 40,
+      width: 25,
+      height: 25,
     },
   };
+
+  var Moralis = useContext(MoralisContext);
+  var [user, updateUser] = useUserProfile();
+
   return (
-    <div
-      className="m-2 flex flex-col bg-[#1a162c] p-2 pt-6"
-      style={{ width: "30vw" }}
-    >
-      <div className="profile-card flex min-h-[40vh] flex-col items-center border border-orange-700 p-3">
-        <div className="profile p2 border-amber-500">
+    <div className="m-2 flex flex-col bg-[#1a162c] p-2 pt-6">
+      <div className=" m-8 flex min-h-[40vh] min-w-[25vh] flex-col items-center rounded-lg bg-indigo-800 p-4">
+        <div className="">
           <svg
             viewBox="0 0 16 16"
-            className="bi bi-person-circle w-32"
+            className="bi bi-person-circle w-16"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            // style={{ width: "12rem", height: "12rem" }}
           >
             <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"></path>
             <path
@@ -34,14 +37,26 @@ function Nav() {
           </svg>
         </div>
         <div className="balance p-5">
-          <h2>your ESTATE-X : 419</h2>
+          <button
+            onClick={() => {
+              Moralis.authenticate().then(function (user) {
+                console.log(user);
+                updateUser(user);
+              });
+            }}
+            className="my-5 rounded-lg bg-indigo-500 p-4  px-16 hover:opacity-70"
+          >
+            <span className="text-center">Connect Wallet</span>
+          </button>
+
+          {/* <h2 className="font-semibold">Your Balances</h2> */}
         </div>
       </div>
-      <ul className="flex min-h-[40vh] flex-col justify-around ">
+      <ul className="flex min-h-[40vh] flex-col  justify-around ">
         <li>
-          <Link href={"/"}>
+          <Link href={"/dashboard"}>
             <div
-              className={`flex flex-row justify-around ${style_class.common_icons}`}
+              className={`flex flex-row justify-around px-14 ${style_class.common_icons}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +75,7 @@ function Nav() {
         <li>
           <Link href={"/market"}>
             <div
-              className={`flex flex-row justify-around ${style_class.common_icons}`}
+              className={`flex flex-row   justify-around px-14 ${style_class.common_icons}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +102,7 @@ function Nav() {
         <li>
           <Link href="/mint">
             <div
-              className={`flex flex-row justify-around ${style_class.common_icons}`}
+              className={`flex flex-row justify-around px-14 ${style_class.common_icons}`}
             >
               <svg
                 stroke="currentColor"
@@ -109,7 +124,7 @@ function Nav() {
         <li>
           <Link href={"/verify"}>
             <div
-              className={`flex flex-row justify-around ${style_class.common_icons}`}
+              className={`flex flex-row justify-around px-14 ${style_class.common_icons}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

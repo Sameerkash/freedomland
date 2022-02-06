@@ -9,14 +9,19 @@ function dashboard() {
         <title>Freedomland</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex min-h-screen flex-row">
+      <div className="flex flex-row">
         <Nav />
-        <div className="m-2 flex flex-grow p-2 ">
-          <MainPage />
-        </div>
+        <MainPage />
       </div>
     </>
   );
 }
+
+// <div className="flex-[4_4_0%]">
+// <Nav />
+// </div>
+// <div className="m-2 flex flex-[6_6_0%]  p-2">
+// <MainPage />
+// </div>
 
 export default dashboard;
