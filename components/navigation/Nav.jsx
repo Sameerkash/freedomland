@@ -1,7 +1,6 @@
 import Link from "next/link";
-import MoralisContext from "../../context/MoralisContext";
-import useUserProfile from "../../hooks/useUserProfile";
-import { useContext } from "react";
+import { useMoralis, useERC20Balances } from "react-moralis";
+import { useEffect } from "react";
 
 function Nav() {
   const style_class = {
@@ -12,8 +11,35 @@ function Nav() {
     },
   };
 
-  var Moralis = useContext(MoralisContext);
-  var [user, updateUser] = useUserProfile();
+  var { authenticate, isAuthenticated, user } = useMoralis();
+  const { fetchERC20Balances, data, isLoading, isFetching, Error } =
+    useERC20Balances();
+
+  const balances = () => {
+    fetchERC20Balances({ params: { chain: "mumbai" } });
+  };
+
+  const updateBalances = (data) => {
+    if (!data) return 0;
+    console.log("debug: ", data);
+    let balance = 0;
+
+    data.forEach((token) => {
+      if (
+        token.token_address === "0x77d88e28fd0ef8ce7a80cd2a135958507a58e426"
+      ) {
+        balance = Number(token.balance).toFixed(3);
+      }
+    });
+
+    return balance;
+  };
+
+  console.log("debug: ", Error);
+
+  useEffect(() => {
+    balances();
+  }, [isAuthenticated]);
 
   return (
     <div className="m-2 flex flex-col bg-[#1a162c] p-2 pt-6">
@@ -37,19 +63,28 @@ function Nav() {
           </svg>
         </div>
         <div className="balance p-5">
-          <button
-            onClick={() => {
-              Moralis.authenticate().then(function (user) {
-                console.log(user);
-                updateUser(user);
-              });
-            }}
-            className="my-5 rounded-lg bg-indigo-500 p-4  px-16 hover:opacity-70"
-          >
-            <span className="text-center">Connect Wallet</span>
-          </button>
+          {!isAuthenticated && (
+            <button
+              onClick={() => {
+                authenticate().then(() => {
+                  console.log(user);
+                  updateUser(user);
+                });
+              }}
+              className="my-5 rounded-lg bg-indigo-500 p-4  px-16 hover:opacity-70"
+            >
+              <span className="text-center ">Connect Wallet</span>
+            </button>
+          )}
 
-          {/* <h2 className="font-semibold">Your Balances</h2> */}
+          {isAuthenticated && !isLoading && !isFetching && (
+            <div className="flex flex-col">
+              <h2 className="font-semibold">Your Balances</h2>
+              <span className="font-semibold text-white">
+                ESX :{updateBalances(data)}
+              </span>
+            </div>
+          )}
         </div>
       </div>
       <ul className="flex min-h-[40vh] flex-col  justify-around ">

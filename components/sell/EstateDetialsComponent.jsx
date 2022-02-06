@@ -123,7 +123,7 @@ function EstateDetialsComponent() {
           onChange={handleFile}
           ref={hiddenDocumentFile}
           type="file"
-          alt="uploadImage"
+          alt="uploadFile"
         />
 
         <button

@@ -1,13 +1,14 @@
 import "../styles/globals.css";
 import { AppProps } from "next/app";
-import MoralisContext from "../context/MoralisContext";
-import Moralis from "../services/moralis";
+import { MoralisProvider } from "react-moralis";
+
+import { serverUrl, appId } from '../services/moralis';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <MoralisContext.Provider value={Moralis}>
+    <MoralisProvider  serverUrl={serverUrl} appId={appId} >
       <Component {...pageProps} />;
-    </MoralisContext.Provider>
+    </MoralisProvider>
   );
 }
 
