@@ -3,7 +3,9 @@ import { AppProps } from "next/app";
 import { MoralisProvider } from "react-moralis";
 import MoralisContext from "../context/MoralisContext";
 
-import { serverUrl, appId, Moralis } from "../services/moralis";
+import { serverUrl, appId } from "../services/moralis";
+import MoralisContext from "../context/MoralisContext";
+import { Moralis } from "../services/moralis";
 
 function MyApp({ Component, pageProps }) {
   return (
