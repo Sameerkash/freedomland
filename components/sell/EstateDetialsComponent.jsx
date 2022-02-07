@@ -167,7 +167,7 @@ function EstateDetialsComponent() {
         </button>
       </div>
       <div className="w-100 flex h-20 flex-row justify-between px-8 py-10">
-        <span className="pr-6 text-xl">Emter a price</span>
+        <span className="pr-6 text-xl">Enter a price</span>
         <input
           type="number"
           min="1"
@@ -181,7 +181,7 @@ function EstateDetialsComponent() {
 
       <div className="w-100 h-30 flex flex-row justify-between px-8 py-10">
         <span className="pr-6 text-xl">
-          Whould you like to list this for Sale or Rent ?
+          Would you like to list this for Sale or Rent ?
         </span>
         <DropdownComponent sell={isSell} setSell={setIsSell} />
       </div>

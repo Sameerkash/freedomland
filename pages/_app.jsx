@@ -4,7 +4,6 @@ import { MoralisProvider } from "react-moralis";
 import MoralisContext from "../context/MoralisContext";
 
 import { serverUrl, appId } from "../services/moralis";
-import MoralisContext from "../context/MoralisContext";
 import { Moralis } from "../services/moralis";
 
 function MyApp({ Component, pageProps }) {

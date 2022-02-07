@@ -9,35 +9,35 @@ function MarketPage() {
       nftPrice: "9.00",
       nftRentPrice: "0.2",
       nftImage:
-        "https://lh3.googleusercontent.com/3GN1RPjmaarlwxVX6-VRpNZbNhitK6q_g74hLSOhmBcQJ3dpj85Fu5fLpEKNoPknVjSdMyjX3cx289T7LZDo-_MaIl8Io7xRnt7WQQ=w600",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.gRJDJ6wmX8UUg3d55CZyKAHaFj%26pid%3DApi&f=1",
     },
     {
       nftName: "nft5",
       nftPrice: "93.00",
       nftRentPrice: "1.2",
       nftImage:
-        "https://opensea.mypinata.cloud/ipfs/Qme4idDMSu2SujiRV5svJBqqTZapg78DJ6QNsrN9nd81wj",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.PjoAoZk7XFTzRpxwrN8angHaHa%26pid%3DApi&f=1",
     },
     {
       nftName: "nft1",
       nftPrice: "0.01",
       nftRentPrice: "0.002",
       nftImage:
-        "https://cdn.coingape.com/wp-content/uploads/2021/12/13202957/bored-ape-nft-sothebys-record-sale-gID_4-1636814089.jpg",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.1eagFVSj9zUyZBJRwPZmdAHaE8%26pid%3DApi&f=1",
     },
     {
       nftName: "nft2",
       nftPrice: "0.01",
       nftRentPrice: "0.002",
       nftImage:
-        "https://lh3.googleusercontent.com/GM4a-VCWL8j5H3qE0IohssLWyYRJZKFbT1XkVnrXBhetT08PkaHnQqTZD0Z1mNMfLrZUmjngW9LTTBDXpvpz9k8fPbSLrt5ApkKzyg",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.gRJDJ6wmX8UUg3d55CZyKAHaFj%26pid%3DApi&f=1",
     },
     {
       nftName: "nft3",
       nftPrice: "0.01",
       nftRentPrice: "0.002",
       nftImage:
-        "https://cdn.coingape.com/wp-content/uploads/2021/12/13202957/bored-ape-nft-sothebys-record-sale-gID_4-1636814089.jpg",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.2EPULDr0Pn9g18bMS6TnbAHaEo%26pid%3DApi&f=1",
     },
   ];
 
@@ -49,7 +49,7 @@ function MarketPage() {
         </span>
         <div className="banner-slider m-3 h-1/5  p-3">
           <img
-            src="https://cdn.discordapp.com/attachments/938514476204982353/939169339322560573/07da6aab54198b6450440f8050e3034f.png"
+            src="https://www.rliland.com/wp-content/uploads/land-for-sale_edited.png"
             alt="lorem ipsum dollor"
             className="h-full w-full rounded-3xl"
           />
