@@ -3,6 +3,8 @@ import DropdownComponent from "./DropdownComponent";
 import MoralisContext from "../../context/MoralisContext";
 import { useApiContract } from "react-moralis";
 import KYC from "../../abi/KYC.json";
+import { KYC_CONTRACT_ADDRESS } from "../../services/contract";
+
 function EstateDetialsComponent() {
   let Moralis = useContext(MoralisContext);
 
@@ -19,7 +21,7 @@ function EstateDetialsComponent() {
   const [fullData, setFullData] = useState();
 
   var { data, runContractFunction, isFetching, isLoading } = useApiContract({
-    address: "0xf81ade303ED46891Bda8d5FC8DDD83D78F195F52",
+    address: KYC_CONTRACT_ADDRESS,
     functionName: "createDoc",
     abi: KYC,
     chain: "mumbai",
@@ -41,15 +43,14 @@ function EstateDetialsComponent() {
     });
 
     setFullData({
-      nftName: nftName,
-      description: description,
-      // image: image,
+      documentURI: jsonToIpfs,
+      imageURI: image,
+      isSell: isSell == 1 ? true : false,
       price: price,
-      json: jsonToIpfs,
+      latLong: "10 41 N, 77 00 E",
     });
 
-
-    runContractFunction()
+    runContractFunction();
 
     console.log("fullData: ", fullData);
   }
